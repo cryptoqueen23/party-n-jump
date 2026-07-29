@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTY-N-JUMP — Homepage Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#2F7DED;
+    --sky-deep:#1E5FC4;
+    --yellow:#FFC83C;
+    --pink:#FF5C77;
+    --green:#2FB86B;
+    --navy:#132039;
+    --cream:#FFFCF5;
+    --white:#FFFFFF;
+    --radius-lg: 28px;
+    --radius-sm: 14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Nunito', sans-serif;
+    color:var(--navy);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    line-height:1.05;
+    margin:0;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  :focus-visible{outline:3px solid var(--navy); outline-offset:3px;}
+  button:focus-visible, a:focus-visible{outline:3px solid var(--navy); outline-offset:3px;}
+  /* dark backgrounds need a light-colored focus ring to stay visible */
+  footer :focus-visible, .btn-navy:focus-visible, .mockup-banner :focus-visible{
+    outline-color:var(--yellow);
+  }
+
+  /* ---------- skip link ---------- */
+  .skip-link{
+    position:absolute; left:16px; top:-60px;
+    background:var(--yellow); color:var(--navy);
+    font-weight:800; padding:12px 20px; border-radius:0 0 10px 10px;
+    border:3px solid var(--navy); border-top:none;
+    text-decoration:none; z-index:100;
+    transition:top .15s ease;
+  }
+  .skip-link:focus{top:0;}
+
+  section[id], main{scroll-margin-top:84px;}
+
+  .sr-only{
+    position:absolute; width:1px; height:1px;
+    padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  /* ---------- mockup banner ---------- */
+  .mockup-banner{
+    background:var(--navy);
+    color:var(--cream);
+    text-align:center;
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.02em;
+    padding:10px 16px;
+  }
+  .mockup-banner a{color:var(--yellow); text-decoration:underline; font-weight:700;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- header ---------- */
+  header{
+    background:var(--white);
+    border-bottom:3px solid var(--navy);
+    position:sticky; top:0; z-index:50;
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:1180px; margin:0 auto;
+    gap:16px; flex-wrap:wrap;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fredoka', sans-serif; font-weight:700; font-size:1.5rem;
+    text-decoration:none; color:var(--navy);
+  }
+  .logo-badge{
+    width:42px; height:42px; border-radius:50%;
+    background:var(--pink); border:3px solid var(--navy);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem;
+    transform:rotate(-8deg);
+  }
+  nav.primary-nav{
+    display:flex; gap:22px; font-weight:700; font-size:0.95rem;
+  }
+  nav.primary-nav a{text-decoration:none; padding:4px 2px; border-bottom:3px solid transparent;}
+  nav.primary-nav a:hover{border-bottom-color:var(--yellow);}
+  .header-actions{display:flex; align-items:center; gap:14px;}
+  .nav-toggle{
+    display:none;
+    width:44px; height:44px;
+    align-items:center; justify-content:center;
+    background:var(--white); border:3px solid var(--navy); border-radius:10px;
+    cursor:pointer; padding:0;
+  }
+  .nav-toggle .bar{display:block; width:20px; height:3px; background:var(--navy); position:relative;}
+  .nav-toggle .bar::before, .nav-toggle .bar::after{
+    content:""; position:absolute; left:0; width:20px; height:3px; background:var(--navy);
+  }
+  .nav-toggle .bar::before{top:-6px;}
+  .nav-toggle .bar::after{top:6px;}
+  .phone-link{font-weight:800; text-decoration:none; font-size:0.95rem; white-space:nowrap;}
+  .btn{
+    display:inline-block;
+    font-family:'Fredoka', sans-serif; font-weight:600;
+    padding:12px 26px;
+    border-radius:999px;
+    border:3px solid var(--navy);
+    text-decoration:none;
+    box-shadow:4px 4px 0 var(--navy);
+    transition:transform .12s ease, box-shadow .12s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--navy);}
+  .btn:active{transform:translate(0,0); box-shadow:2px 2px 0 var(--navy);}
+  .btn-yellow{background:var(--yellow); color:var(--navy);}
+  .btn-white{background:var(--white); color:var(--navy);}
+  .btn-navy{background:var(--navy); color:var(--cream); border-color:var(--navy);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:var(--sky-deep);
+    padding:76px 24px 96px;
+    border-bottom:3px solid var(--navy);
+  }
+  .hero-video{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    z-index:0;
+  }
+  .hero-scrim{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(100deg, rgba(19,32,57,0.86) 0%, rgba(19,32,57,0.82) 52%, rgba(19,32,57,0.45) 100%);
+  }
+  .hero .wrap{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:center;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.8rem; font-weight:700;
+    background:var(--white); color:var(--navy);
+    display:inline-block; padding:6px 14px; border-radius:999px;
+    border:2px solid var(--navy); margin-bottom:18px;
+  }
+  .hero h1{
+    color:var(--white);
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    text-shadow:3px 3px 0 var(--navy);
+  }
+  .hero h1 span{color:var(--yellow);}
+  .hero p.lede{
+    color:var(--white); font-size:1.15rem; font-weight:700;
+    max-width:46ch; margin:20px 0 28px;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-card{
+    background:var(--white);
+    border:3px solid var(--navy);
+    border-radius:var(--radius-lg);
+    box-shadow:8px 8px 0 var(--navy);
+    padding:26px;
+    transform:rotate(2deg);
+  }
+  .hero-card h3{font-size:1.1rem; margin-bottom:12px;}
+  .hero-stat-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:2px dashed #d8dce6;}
+  .hero-stat-row:last-child{border-bottom:none;}
+  .hero-stat-num{font-family:'Fredoka'; font-weight:700; color:var(--sky-deep);}
+
+  /* ---------- bunting divider (signature element) ---------- */
+  .bunting{
+    display:flex;
+    justify-content:center;
+    padding-top:14px;
+    background:var(--cream);
+  }
+  .bunting-line{
+    position:relative;
+    width:100%;
+    max-width:1180px;
+    display:flex;
+    justify-content:space-evenly;
+    border-top:3px dashed var(--navy);
+    padding-top:0;
+  }
+  .flag{
+    width:0; height:0;
+    border-left:16px solid transparent;
+    border-right:16px solid transparent;
+    border-top:26px solid var(--sky);
+    margin-top:-2px;
+  }
+  .flag:nth-child(4n+2){border-top-color:var(--pink);}
+  .flag:nth-child(4n+3){border-top-color:var(--yellow);}
+  .flag:nth-child(4n+4){border-top-color:var(--green);}
+
+  /* ---------- trust bar ---------- */
+  .trust-bar{
+    background:var(--navy); color:var(--cream);
+    padding:14px 24px;
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+  }
+  .trust-bar .wrap{display:flex; flex-wrap:wrap; gap:10px 28px; justify-content:center; text-align:center;}
+
+  /* ---------- section heads ---------- */
+  section{padding:70px 24px;}
+  .section-head{text-align:center; max-width:640px; margin:0 auto 46px;}
+  .section-head .eyebrow{background:var(--cream); border-color:var(--navy);}
+  .section-head h2{font-size:clamp(1.8rem,3.4vw,2.4rem); margin-top:14px;}
+  .section-head p{font-weight:700; color:#3c4967; margin-top:10px;}
+
+  /* ---------- category grid ---------- */
+  .cat-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+    max-width:1180px; margin:0 auto;
+  }
+  .cat-card{
+    background:var(--white);
+    border:3px solid var(--navy);
+    border-radius:var(--radius-sm);
+    padding:24px 20px;
+    text-decoration:none;
+    color:var(--navy);
+    box-shadow:5px 5px 0 var(--navy);
+    transition:transform .12s ease, box-shadow .12s ease;
+    display:block;
+  }
+  .cat-card:hover{transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--navy);}
+  .cat-card:nth-child(odd){transform:rotate(-1deg);}
+  .cat-card:nth-child(even){transform:rotate(1deg);}
+  .cat-card:nth-child(odd):hover{transform:rotate(-1deg) translate(-3px,-3px);}
+  .cat-card:nth-child(even):hover{transform:rotate(1deg) translate(-3px,-3px);}
+  .cat-icon{
+    width:52px; height:52px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; margin-bottom:14px;
+    border:3px solid var(--navy);
+  }
+  .cat-card:nth-child(8n+1) .cat-icon{background:var(--yellow);}
+  .cat-card:nth-child(8n+2) .cat-icon{background:var(--pink);}
+  .cat-card:nth-child(8n+3) .cat-icon{background:var(--green);}
+  .cat-card:nth-child(8n+4) .cat-icon{background:var(--sky);}
+  .cat-card:nth-child(8n+5) .cat-icon{background:var(--pink);}
+  .cat-card:nth-child(8n+6) .cat-icon{background:var(--yellow);}
+  .cat-card:nth-child(8n+7) .cat-icon{background:var(--sky);}
+  .cat-card:nth-child(8n+8) .cat-icon{background:var(--green);}
+  .cat-card h3{font-size:1.08rem; margin-bottom:6px;}
+  .cat-card p{margin:0; font-size:0.88rem; font-weight:700; color:#556082;}
+
+  /* ---------- how it works ---------- */
+  .steps{
+    max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .step{
+    background:var(--white); border:3px solid var(--navy); border-radius:var(--radius-sm);
+    padding:28px; position:relative;
+  }
+  .step-num{
+    font-family:'Space Mono', monospace; font-weight:700;
+    color:var(--white); background:var(--navy);
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px; font-size:0.9rem;
+  }
+  .step h3{font-size:1.15rem; margin-bottom:8px;}
+  .step p{margin:0; font-size:0.92rem; font-weight:700; color:#556082;}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background:var(--pink);
+    border-top:3px solid var(--navy);
+    border-bottom:3px solid var(--navy);
+    text-align:center;
+    padding:60px 24px;
+  }
+  .cta-band h2{color:var(--navy); font-size:clamp(1.8rem,4vw,2.6rem);}
+  .cta-band p{color:var(--navy); font-weight:800; margin:14px 0 30px;}
+  .cta-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  /* ---------- trust strip / notes ---------- */
+  .notes-strip{
+    max-width:820px; margin:60px auto 0;
+    background:var(--white); border:3px dashed var(--navy); border-radius:var(--radius-sm);
+    padding:22px 26px; font-size:0.9rem; font-weight:700; color:#3c4967;
+    text-align:center;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--navy); color:var(--cream);
+    padding:56px 24px 28px;
+  }
+  .footer-grid{
+    max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px;
+  }
+  footer h4{font-family:'Fredoka'; font-size:1.05rem; margin-bottom:14px; color:var(--yellow);}
+  footer .logo{color:var(--cream);}
+  footer p{font-size:0.88rem; line-height:1.6; color:#c7cee0; max-width:32ch;}
+  footer ul{list-style:none; margin:0; padding:0;}
+  footer li{margin-bottom:9px;}
+  footer a{text-decoration:none; font-size:0.9rem; color:#dfe4f0;}
+  footer a:hover{color:var(--yellow);}
+  .footer-bottom{
+    max-width:1180px; margin:40px auto 0; padding-top:22px;
+    border-top:1px solid #2a3a5c;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:0.78rem; color:#8b96b8; font-family:'Space Mono', monospace;
+  }
+
+  @media (max-width: 900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-card{transform:none; margin-top:20px;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width: 780px){
+    .nav-toggle{display:flex;}
+    nav.primary-nav{
+      display:none;
+      order:10;
+      width:100%;
+      flex-direction:column;
+      gap:0;
+      background:var(--white);
+      border-top:2px solid var(--navy);
+      margin-top:14px;
+    }
+    nav.primary-nav.open{display:flex;}
+    nav.primary-nav a{
+      padding:14px 4px;
+      border-bottom:1px solid #e3e6ee;
+      min-height:44px;
+      display:flex; align-items:center;
+    }
+    .hero{padding:56px 20px 72px;}
+    .cta-actions{flex-direction:column; align-items:stretch;}
+    .cta-actions .btn{text-align:center;}
+  }
+  @media (max-width: 560px){
+    .cat-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero-ctas{flex-direction:column; align-items:stretch;}
+    .hero-ctas .btn{text-align:center;}
+    .trust-bar .wrap{flex-direction:column; gap:8px; text-align:center;}
+    .header-inner{padding:14px 16px;}
+    .logo{font-size:1.25rem;}
+  }
+  @media (max-width: 380px){
+    .hero h1{font-size:1.9rem;}
+    .btn{padding:12px 18px; font-size:0.92rem;}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="mockup-banner">Homepage mockup — proposed fix for party-n-jump.info · prepared by <a href="https://tree.phoenixsecuritas.com">Phoenix Securitas Tech</a></div>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo"><span class="logo-badge" aria-hidden="true">🎈</span> PARTY-N-JUMP</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="bar"></span>
+    </button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+      <a href="#categories">Rentals</a>
+      <a href="#how">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="phone-link" href="tel:5122675867"><span aria-hidden="true">📞</span> (512) 267-5867</a>
+      <a class="btn btn-yellow" href="#book">Book Now</a>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+<section class="hero">
+  <video class="hero-video" id="hero-video" poster="hero-poster.jpg" muted loop playsinline aria-hidden="true">
+    <source src="hero-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">CENTRAL TEXAS · SINCE 1997</span>
+      <h1>Backyard fun, <span>delivered</span> — bounce houses, slides &amp; more</h1>
+      <p class="lede">Serving Leander, Copperas Cove and surrounding areas with bounce houses, water slides, carnival games, concessions and party extras — delivered and set up so you don't have to lift a finger.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-white" href="#book">Check Available Dates</a>
+        <a class="btn btn-navy" href="tel:5122675867">Call (512) 267-5867</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Why families book with us</h3>
+      <div class="hero-stat-row"><span>Years serving Central Texas</span><span class="hero-stat-num">28+</span></div>
+      <div class="hero-stat-row"><span>Delivery &amp; setup included*</span><span class="hero-stat-num" aria-hidden="true">✔</span><span class="sr-only">Yes</span></div>
+      <div class="hero-stat-row"><span>Rental categories</span><span class="hero-stat-num">15+</span></div>
+      <div class="hero-stat-row"><span>Pickup or delivery options</span><span class="hero-stat-num" aria-hidden="true">✔</span><span class="sr-only">Yes</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="bunting" aria-hidden="true" role="presentation">
+  <div class="bunting-line">
+    <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+    <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+    <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+  </div>
+</div>
+
+<div class="trust-bar">
+  <div class="wrap">
+    <span><span aria-hidden="true">🚚</span> CUSTOMER PICKUP OR DELIVERY</span>
+    <span><span aria-hidden="true">💳</span> 50% NON-REFUNDABLE DEPOSIT TO RESERVE</span>
+    <span><span aria-hidden="true">📍</span> LEANDER &amp; COPPERAS COVE AREAS</span>
+    <span><span aria-hidden="true">☎️</span> WE ALWAYS CALL YOU BACK</span>
+  </div>
+</div>
+
+<section id="categories">
+  <div class="section-head">
+    <span class="eyebrow">WHAT WE RENT</span>
+    <h2>Everything for one unforgettable party</h2>
+    <p>Browse by category, pick your date, and we'll handle delivery and setup.</p>
+  </div>
+  <div class="cat-grid">
+    <a class="cat-card" href="#">
+      <div class="cat-icon" aria-hidden="true">🏰</div>
+      <h3>Bounce Houses</h3>
+      <p>Classic moonwalks &amp; themed jumpers for every party.</p>
+    </a>
+    <a class="cat-card" href="#">
+      <div class="cat-icon" aria-hidden="true">💦</div>
+      <h3>Water Slides &amp; Bouncers</h3>
+      <p>Beat the Texas heat with soakers, slides &amp; splash combos.</p>
+    </a>
+    <a class="cat-card" href="#">
+      <div class="cat-icon" aria-hidden="true">🎢</div>
+      <h3>Combo &amp; Obstacle Units</h3>
+      <p>Slides, climbs &amp; obstacle courses in one bouncer.</p>
+    </a>
+    <a class="cat-card" href="#">
+      <div class="cat-icon" aria-hidden="true">🎯</div>
+      <h3>Carnival Games &amp; Rides</h3>
+      <p>Midway games and interactive rides for all ages.</p>
+    </a>
+    <a class="cat-card" href="#">
+      <div class="cat-icon" aria-hidden="true">🍹</div>
+      <h3>Concessions &amp; Drink Machines</h3>
+      <p>Frozen drink machines, snow cones, popcorn &amp; more.</p>
+    </a>
+    <a class="cat-card" href="#">
+      <div class="cat-icon" aria-hidden="true">🪑</div>
+      <h3>Seating, Tents &amp; Tables</h3>
+      <p>Shade, seating and setup for guests of any size.</p>
+    </a>
+    <a class="cat-card" href="#">
+      <div class="cat-icon" aria-hidden="true">🎭</div>
+      <h3>Entertainers &amp; Costumes</h3>
+      <p>Characters, blacklight parties &amp; costume rentals.</p>
+    </a>
+    <a class="cat-card" href="#">
+      <div class="cat-icon" aria-hidden="true">🏷️</div>
+      <h3>Sales &amp; Promotions</h3>
+      <p>Seasonal deals and new &amp; used equipment for sale.</p>
+    </a>
+  </div>
+</section>
+
+<div class="bunting" aria-hidden="true" role="presentation">
+  <div class="bunting-line">
+    <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+    <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+    <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+  </div>
+</div>
+
+<section id="how">
+  <div class="section-head">
+    <span class="eyebrow">HOW IT WORKS</span>
+    <h2>Booking is three steps, not a scavenger hunt</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Pick your date &amp; rentals</h3>
+      <p>Check availability by date and choose your bounce house, slide, or party extras.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Reserve with a deposit</h3>
+      <p>A 50% non-refundable deposit locks in your date. Delivery is quoted separately.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>We deliver &amp; set up</h3>
+      <p>Choose delivery or customer pickup — either way, we're one call away.</p>
+    </div>
+  </div>
+  <div class="notes-strip">
+    Delivering fun to Central Texas since 1997. If you don't see what you're looking for, give us a call — we always leave a message and call you back.
+  </div>
+</section>
+
+<section class="cta-band" id="book">
+  <h2>Ready to lock in your date?</h2>
+  <p>Call, message us on Facebook, or check availability online — we'll take it from there.</p>
+  <div class="cta-actions">
+    <a class="btn btn-white" href="tel:5122675867">Call (512) 267-5867</a>
+    <a class="btn btn-navy" href="mailto:info@party-n-jump.com">Email Us</a>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="logo"><span class="logo-badge" aria-hidden="true">🎈</span> PARTY-N-JUMP</a>
+      <p style="margin-top:14px;">Delivering backyard fun to Leander, Copperas Cove and surrounding Central Texas areas since 1997.</p>
+    </div>
+    <div>
+      <h4>Rentals</h4>
+      <ul>
+        <li><a href="#">Bounce Houses</a></li>
+        <li><a href="#">Water Slides</a></li>
+        <li><a href="#">Carnival Games</a></li>
+        <li><a href="#">Concessions</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#">Photo Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get In Touch</h4>
+      <ul>
+        <li><a href="tel:5122675867">(512) 267-5867</a></li>
+        <li><a href="mailto:info@party-n-jump.com">info@party-n-jump.com</a></li>
+        <li><a href="https://www.facebook.com/partynjumpCove">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 PARTY-N-JUMP</span>
+    <span>Mockup prepared by <a href="https://tree.phoenixsecuritas.com">Phoenix Securitas Tech</a></span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('nav-toggle');
+    var nav = document.getElementById('primary-nav');
+    if(!toggle || !nav) return;
+
+    function closeMenu(){
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    }
+    function openMenu(){
+      nav.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+    }
+    toggle.addEventListener('click', function(){
+      var isOpen = nav.classList.contains('open');
+      if(isOpen){ closeMenu(); } else { openMenu(); }
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){ closeMenu(); }
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && nav.classList.contains('open')){
+        closeMenu();
+        toggle.focus();
+      }
+    });
+    /* keep menu usable if the viewport is resized past the mobile breakpoint */
+    window.addEventListener('resize', function(){
+      if(window.innerWidth > 780){ closeMenu(); }
+    });
+
+    var heroVideo = document.getElementById('hero-video');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(heroVideo && !reduceMotion){
+      heroVideo.setAttribute('autoplay', '');
+      heroVideo.play().catch(function(){ /* autoplay blocked; poster frame still shows */ });
+    }
+  })();
+</script>
+</body>
+</html>
